@@ -26,8 +26,13 @@ def weighted_randomness(chance: list, item: list, total: int):
     if total == 0:
         total = sum(chance)
         random_int = gen_randomint(0, total)
-        print(random_int)
+        for i in chance:
+            n += 1
+            k += i
+            if random_int <= k:
+                return item[n-1]
 
 item = ["ballpen", "pencil", "paper"]
 chance = [10, 30, 60]     
 x = weighted_randomness(chance, item, 0)
+print(x)
