@@ -20,9 +20,7 @@ def gen_randomint(min: int, max: int):
     return min+random_pref
 
 
-def weighted_randomness(chance: list, item: list, total: int):
-    n = 0
-    k = 0
+def weighted_randomness(chance: list, item: list, total = 0, n = 0, k = 0):
     if total == 0:
         total = sum(chance)
         random_int = gen_randomint(0, total)
@@ -34,5 +32,5 @@ def weighted_randomness(chance: list, item: list, total: int):
 
 item = ["ballpen", "pencil", "paper"]
 chance = [10, 30, 60]     
-x = weighted_randomness(chance, item, 0)
+x = weighted_randomness(chance, item)
 print(x)
