@@ -19,5 +19,8 @@ def gen_randomint(min: int, max: int):
             random_pref = get_randombits(k)
     return min+random_pref
 
+print(gen_randomint(0, 100))
 
-print(gen_randomint(0, 5))
+def weighted_randomness(chance: list, item: list, total: int):
+    n = 0
+    k = 0
