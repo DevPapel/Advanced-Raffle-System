@@ -17,8 +17,7 @@ def gen_randomint(min: int, max: int):
 
         while random_pref >= width:
             random_pref = get_randombits(k)
-    print(min+random_pref)
+    return min+random_pref
 
 
 print(gen_randomint(0, 5))
-print(get_randombits(100))
