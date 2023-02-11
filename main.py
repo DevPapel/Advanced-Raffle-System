@@ -8,6 +8,17 @@ def get_randombits(k: int):
 def gen_randomint(min: int, max: int):
     max += 1
 
+    width = max - min
+    random_pref = 0
+
+    if width > 0:
+        k = width.bit_length()
+        random_pref = get_randombits(k)
+
+        while random_pref >= width:
+            random_pref = get_randombits(k)
+    print(min+random_pref)
 
 
+print(gen_randomint(0, 5))
 print(get_randombits(100))
