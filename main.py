@@ -42,3 +42,12 @@ host = input("Please enter the Host's Name: ")
 print("Hello",host+", what do you want to do?")
 menu = int(input("[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Start the Raffle\n[4] End the Raffle\nEnter your answer: "))
 
+if menu == 1:
+    add_item = input("What item do you want to add? ")
+    item.append(add_item)
+
+    add_chance = float(input("What is the percentage chance to get "+str(add_item)+"? "))
+    chance.append(add_chance)
+
+    print(item)
+    print(chance)
