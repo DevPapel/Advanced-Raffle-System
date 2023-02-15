@@ -33,8 +33,8 @@ def weighted_randomness(chance: list, item: list, total = 0, n = 0, k = 0):
 #x = weighted_randomness(chance, item)
 #print(x)
 
-item = []
-chance = []
+item = ["stone", "sword"]
+chance = [1, 2]
 
 print("Welcome to the Advanced Raffle System")
 host = input("Please enter the Host's Name: ")
@@ -51,3 +51,12 @@ if menu == 1:
 
     print(item)
     print(chance)
+
+
+elif menu == 2:
+    for i in range(len(item)):
+        print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
+    edit_menu = int("What item do you want to edit? ")
+    print
+
+
