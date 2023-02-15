@@ -86,6 +86,13 @@ elif menu == 2:
         for i in range(len(item)):
             print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
 
+elif menu == 3:
+    #Spin 1x Spin X Times Spin Again Main Menu
+    print("\nPreviewing Raffle items to win")
+    for i in range(len(item)):
+        print("-", item[i], str(chance[i])+"%")
+    print("\n- Choose an option -\n[1] Spin 1x\n[2] Spin X Times \n[3] Go back to Main Menu")
+
 
 
 
