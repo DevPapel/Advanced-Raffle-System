@@ -91,7 +91,19 @@ elif menu == 3:
     print("\nPreviewing Raffle items to win")
     for i in range(len(item)):
         print("-", item[i], str(chance[i])+"%")
-    print("\n- Choose an option -\n[1] Spin 1x\n[2] Spin X Times \n[3] Go back to Main Menu")
+    spin = int(input("\n- Choose an option -\n[1] Spin 1x\n[2] Spin X Times \n[3] Go back to Main Menu\nType the option you want: "))
+    if spin == 1:
+        winning_prize = weighted_randomness(chance, item)
+        print("Congratulations, you got the raffle item "+winning_prize+"!")
+    elif spin == 2:
+        spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
+        for i in range(0, spin_option):
+            print("Congraulations, you got the raffle item "+weighted_randomness(chance,item)+"!")
+    elif spin == 3:
+        main_menu()
+            
+
+    
 
 
 
