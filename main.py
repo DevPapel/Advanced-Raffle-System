@@ -35,20 +35,17 @@ def weighted_randomness(chance: list, item: list, total = 0, n = 0, k = 0):
 def main_menu():
     while True:
         try:
-            menu = int(input("\n- Main Menu [Select an Option]-\n\n[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Preview Raffle Prizes\n[4] Start the Raffle\n[5] End the Program\n\nHello "+host+", what option would you like to choose? "))
-            while menu < 0 or menu > 5:
-                menu = int(input("\n- Main Menu [Invalid Option, Please try again]-\n\n[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Preview Raffle Prizes\n[4] Start the Raffle\n[5] End the Program\n\nHello "+host+", what option would you like to choose? "))
+            menu = int(input("\n- Main Menu [Select an Option]-\n\n[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Start the Raffle\n[4] End the Program\n\nHello "+host+", what option would you like to choose? "))
+            while menu < 0 or menu > 4:
+                menu = int(input("\n- Main Menu [Option out of range, Please try again]-\n\n[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Start the Raffle\n[4] End the Program\n\nHello "+host+", what option would you like to choose? "))
             if menu == 1:
                 add_newitem()
             elif menu == 2:
                 edit_item()
             elif menu == 3:
-                preview_raffleItem()
-                print("")
-                main_menu()
-            elif menu == 4:
                 spin_item()
-            elif menu == 5:
+            elif menu == 4:
+                print("")
                 print("Thank you for using this program! I hope you enjoy using it!")
                 exit()
             break
@@ -58,18 +55,18 @@ def main_menu():
 
 # Preview items in the raffle
 def preview_raffleItem():
-    print("\nPreviewing Raffle items to win")
+    print("\n[!] Previewing Raffle items to win [!]")
     for i in range(len(item)):
         print("-", item[i], str(chance[i])+"%")
 
 # Add new item in the raffle items
 def add_newitem():
-    add_item = input("What item do you want to add? ")
+    add_item = input("\n- Adding New Item -\nWhat item do you want to add? ")
     item.append(add_item)
 
     while True:
         try:
-            add_chance = float(input("What is the percentage chance to gett "+str(add_item)+"? "))
+            add_chance = float(input("What is the percentage chance to get "+str(add_item)+"? "))
             while add_chance <= 0 or add_chance > 100:
                 add_chance = float(input("Percentage should be ranging from 1 - 100, type your answer again: "))
             break
@@ -90,17 +87,17 @@ def add_newitem():
 def edit_item():
     while True:
         try:
-            print("\n- Editing [Choose an Option] -")
+            print("\n- Editing [Select an Option] -\n")
             print("[0] Go back to Main Menu")
             for i in range(len(item)):
                 print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
-            edit_menu1 = int(input("What item do you want to edit? "))
+            edit_menu1 = int(input("\nWhat item do you want to edit? "))
             while edit_menu1 < 0 or edit_menu1 > len(item):
-                print("\n- Editing [Option out of range, please try again] -")
+                print("\n- Editing [Option out of range, please try again] -\n")
                 print("[0] Go back to Main Menu")
                 for i in range(len(item)):
                     print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
-                edit_menu1 = int(input("What item do you want to edit? "))
+                edit_menu1 = int(input("\nWhat item do you want to edit? "))
             if edit_menu1 != 0:
                 edit_menu1 = edit_menu1 - 1
             else:
@@ -112,20 +109,29 @@ def edit_item():
 
     while True:
         try:
-            print("\n- Editing "+str(item[edit_menu1]),str(chance[edit_menu1])+"% [Choose an option] -")
-            print("[0] Go Back to Main Menu\n[1] Change Item & Chance\n[2] Change the Item\n[3] Change the Chance\n[4] Remove the item from the raffle")
+            print("\n- Editing "+str(item[edit_menu1]),str(chance[edit_menu1])+"% [Select an Option] -\n")
+            print("[0] Go Back to Main Menu\n[1] Change Item & Chance\n[2] Change the Item\n[3] Change the Chance\n[4] Remove the item from the raffle\n")
             edit_menu2 = int(input("What do you want to edit from "+str(item[edit_menu1])+" "+str(chance[edit_menu1])+"%? "))
             while edit_menu2 < 0 or edit_menu2 > 4:
-                print("\n- Editing "+str(item[edit_menu1]),str(chance[edit_menu1])+"% [Option out of range, Please Try Again] -")
-                print("[0] Go Back to Main Menu\n[1] Change Item & Chance\n[2] Change the Item\n[3] Change the Chance\n[4] Remove the item from the raffle")
+                print("\n- Editing "+str(item[edit_menu1]),str(chance[edit_menu1])+"% [Option out of range, Please Try Again] -\n")
+                print("[0] Go Back to Main Menu\n[1] Change Item & Chance\n[2] Change the Item\n[3] Change the Chance\n[4] Remove the item from the raffle\n")
                 edit_menu2 = int(input("What do you want to edit from "+str(item[edit_menu1])+" "+str(chance[edit_menu1])+"%? "))
             if edit_menu2 == 0:
                 print("")
                 main_menu()
+
+
             elif edit_menu2 == 1:
                 new_item = input("Type the new item you want to replace "+str(item[edit_menu1]+": "))
                 item[edit_menu1] = new_item
-                new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+                while True:
+                    try:
+                        new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+                        while new_chance <= 0 or new_chance > 100:
+                            new_chance = float(input("Percentage should be ranging from 1 - 100, type your answer again: "))
+                        break
+                    except ValueError:
+                        print("Answer should be a number (Example Answer: 20) and it automatically converts as 20%")
                 chance[edit_menu1] = new_chance
                 print("Raffle Item have successfully been updated")
                 preview_raffleItem()
@@ -136,8 +142,17 @@ def edit_item():
                 print("Raffle Item have successfully been updated")
                 preview_raffleItem()
 
+
+
             elif edit_menu2 == 3:
-                new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+                while True:
+                    try:
+                        new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+                        while new_chance <= 0 or new_chance > 100:
+                            new_chance = float(input("Percentage should be ranging from 1 - 100, type your answer again: "))
+                        break
+                    except ValueError:
+                        print("Answer should be a number (Example Answer: 20) and it automatically converts as 20%")
                 chance[edit_menu1] = new_chance
                 print("Raffle Item have successfully been updated")
                 preview_raffleItem()
@@ -163,9 +178,9 @@ def spin_item():
     preview_raffleItem()
     while True:
         try:
-            spin = int(input("\n- Choose an option -\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\nType the option you want: "))
+            spin = int(input("\n- Raffle Start [Select an Option]-\n\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\n\nType the option you want: "))
             while spin < 0 or spin > 2:
-                spin = int(input("\n- Option out of range, try again -\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\nType the option you want: "))
+                spin = int(input("\n- Raffle Start [Option out of range, Please Try Again] -\n\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\n\nType the option you want: "))
             if spin == 0:
                 print("")
                 main_menu()
@@ -173,9 +188,16 @@ def spin_item():
                 winning_prize = weighted_randomness(chance, item)
                 print("Congratulations, you got the raffle item: "+winning_prize+"!")
             elif spin == 2:
-                spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
-                for i in range(0, spin_option):
-                    print("Congraulations, you got the raffle item: "+weighted_randomness(chance,item)+"!")
+                while True:
+                    try:
+                        spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
+                        while spin_option < 1:
+                            spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
+                        for i in range(0, spin_option):
+                            print("Congraulations, you got the raffle item: "+weighted_randomness(chance,item)+"!")
+                        break
+                    except ValueError:
+                        print("Input should only be an integer from the Options")
             break
         except ValueError:
             print("Input should only be an integer from the Options")
@@ -189,7 +211,7 @@ def spin_item():
 
 
 # List Variables
-item = ["sample prize"]
+item = ["Experimental Prize"]
 chance = [1]
 
 # Welcome Message
