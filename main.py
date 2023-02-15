@@ -28,31 +28,34 @@ def weighted_randomness(chance: list, item: list, total = 0, n = 0, k = 0):
             if random_int <= k:
                 return item[n-1]
 
-#item = ["ballpen", "pencil", "paper"]
-#chance = [10, 30, 60]     
-#x = weighted_randomness(chance, item)
-#print(x)
-
 
 def main_menu():
     print("Hello",host+", what do you want to do?")
     menu = int(input("[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Start the Raffle\n[4] End the Raffle\nEnter your answer: "))
     if menu == 1:
-        add_item()
+        add_newitem()
     elif menu == 2:
         edit_item()
     elif menu == 3:
-        spin()
+        spin_item()
 
-def add_item():
+def add_newitem():
     add_item = input("What item do you want to add? ")
     item.append(add_item)
 
     add_chance = float(input("What is the percentage chance to get "+str(add_item)+"? "))
     chance.append(add_chance)
 
-    print(item)
-    print(chance)
+    print("Raffle Item have successfully been updated")
+    print("\nPreviewing Raffle items to win")
+    for i in range(len(item)):
+        print("-", item[i], str(chance[i])+"%")
+
+    continue_add = input("\nDo you want to continue adding item? [Y/N]: ").upper()
+    if continue_add != "Y":
+        main_menu()
+    else:
+        add_newitem()
     
 
 def edit_item():
@@ -107,7 +110,13 @@ def edit_item():
         for i in range(len(item)):
             print("-", item[i], str(chance[i])+"%")
 
-def spin():
+    continue_edit = input("\nDo you want to continue editing item? [Y/N]: ").upper()
+    if continue_edit != "Y":
+        main_menu()
+    else:
+        edit_item()
+
+def spin_item():
     print("\nPreviewing Raffle items to win")
     for i in range(len(item)):
         print("-", item[i], str(chance[i])+"%")
@@ -122,14 +131,14 @@ def spin():
         spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
         for i in range(0, spin_option):
             print("Congraulations, you got the raffle item "+weighted_randomness(chance,item)+"!")
+    continue_spin = input("\nDo you want to continue editing item? [Y/N]: ").upper()
+    if continue_spin != "Y":
+        main_menu()
+    else:
+        spin_item()
 
 
 
-def cont():
-    print("")
-    continue_prog = input("Do you want to continue? [Y/N]: ").upper()
-    if continue_prog != "Y":
-        exit()
 
 item = ["stone", "sword"]
 chance = [1, 2]
