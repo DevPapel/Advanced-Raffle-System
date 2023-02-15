@@ -54,9 +54,41 @@ if menu == 1:
 
 
 elif menu == 2:
+    print("\n- Editing [Type the number you want to edit] -")
     for i in range(len(item)):
         print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
-    edit_menu = int("What item do you want to edit? ")
-    print
+    edit_menu1 = int(input("What item do you want to edit? "))
+    edit_menu1 = edit_menu1 - 1
+    print("\n- Editing "+str(item[edit_menu1]),str(chance[edit_menu1])+"% [Choose an option] -")
+    print("[1] Change Item & Chance\n[2] Change the Item\n[3] Change the Chance")
+
+    edit_menu2 = int(input("What do you want to edit from "+str(item[edit_menu1])+" "+str(chance[edit_menu1])+"%? "))
+    if edit_menu2 == 1:
+        new_item = input("Type the new item you want to replace "+str(item[edit_menu1]+": "))
+        item[edit_menu1] = new_item
+        new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+        chance[edit_menu1] = new_chance
+        print("Raffle Item have successfully been updated")
+        for i in range(len(item)):
+            print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
+
+    elif edit_menu2 == 2:
+        new_item = input("Type the new item you want to replace "+str(item[edit_menu1]+": "))
+        item[edit_menu1] = new_item
+        print("Raffle Item have successfully been updated")
+        for i in range(len(item)):
+            print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
+
+    elif edit_menu2 == 3:
+        new_chance = float(input("Type the new chance for the item "+str(item[edit_menu1])+": "))
+        chance[edit_menu1] = new_chance
+        print("Raffle Item have successfully been updated")
+        for i in range(len(item)):
+            print("["+str(i+1)+"]", item[i], str(chance[i])+"%")
+
+
+
+
+
 
 
