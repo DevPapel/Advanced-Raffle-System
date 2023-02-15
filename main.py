@@ -126,18 +126,27 @@ def edit_item():
 # Spin the raffle
 def spin_item():
     preview_raffleItem()
-    spin = int(input("\n- Choose an option -\n[1] Spin 1x\n[2] Spin X Times \n[3] Go back to Main Menu\nType the option you want: "))
-    if spin == 0:
-        print("")
-        main_menu()
-    elif spin == 1:
-        winning_prize = weighted_randomness(chance, item)
-        print("Congratulations, you got the raffle item "+winning_prize+"!")
-    elif spin == 2:
-        spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
-        for i in range(0, spin_option):
-            print("Congraulations, you got the raffle item "+weighted_randomness(chance,item)+"!")
-    continue_spin = input("\nDo you want to continue editing item? [Y/N]: ").upper()
+    while True:
+        try:
+            spin = int(input("\n- Choose an option -\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\nType the option you want: "))
+            while spin < 0:
+                spin = int(input("\n- Option out of range, try again -\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\nType the option you want: "))
+            while spin > 2:
+                spin = int(input("\n- Option out of range, try again -\n[0] Go Back to Main Menu \n[1] Spin 1x\n[2] Spin X Times\nType the option you want: "))
+            if spin == 0:
+                print("")
+                main_menu()
+            elif spin == 1:
+                winning_prize = weighted_randomness(chance, item)
+                print("Congratulations, you got the raffle item: "+winning_prize+"!")
+            elif spin == 2:
+                spin_option = int(input("How many spin you want to do?[Example answer: 10 - will be 10x Spin]: "))
+                for i in range(0, spin_option):
+                    print("Congraulations, you got the raffle item: "+weighted_randomness(chance,item)+"!")
+            break
+        except ValueError:
+            print("Input should only be an integer from the Options")
+    continue_spin = input("\nDo you want to continue spinning raffle? [Y/N]: ").upper()
     if continue_spin != "Y":
         main_menu()
     else:
@@ -155,13 +164,3 @@ host = input("Please enter the Host's Name: ")
 
 # Calling the main_menu
 main_menu()
-            
-
-    
-
-
-
-
-
-
-
