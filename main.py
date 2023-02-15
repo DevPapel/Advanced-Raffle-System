@@ -37,7 +37,12 @@ def weighted_randomness(chance: list, item: list, total = 0, n = 0, k = 0):
 def main_menu():
     print("Hello",host+", what do you want to do?")
     menu = int(input("[1] Add a Raffle Prize\n[2] Edit the Raffle Prizes\n[3] Start the Raffle\n[4] End the Raffle\nEnter your answer: "))
-    return menu
+    if menu == 1:
+        add_item()
+    elif menu == 2:
+        edit_item()
+    elif menu == 3:
+        spin()
 
 def add_item():
     add_item = input("What item do you want to add? ")
@@ -48,6 +53,7 @@ def add_item():
 
     print(item)
     print(chance)
+    
 
 def edit_item():
     print("\n- Editing [Type the number you want to edit] -")
@@ -117,14 +123,13 @@ def spin():
         for i in range(0, spin_option):
             print("Congraulations, you got the raffle item "+weighted_randomness(chance,item)+"!")
 
-def main_menu2(menu):
-    if menu == 1:
-        add_item()
-    elif menu == 2:
-        edit_item()
-    elif menu == 3:
-        spin()
-        
+
+
+def cont():
+    print("")
+    continue_prog = input("Do you want to continue? [Y/N]: ").upper()
+    if continue_prog != "Y":
+        exit()
 
 item = ["stone", "sword"]
 chance = [1, 2]
@@ -132,8 +137,7 @@ chance = [1, 2]
 print("Welcome to the Advanced Raffle System")
 host = input("Please enter the Host's Name: ")
 
-option = main_menu()
-main_menu2(option)
+main_menu()
             
 
     
