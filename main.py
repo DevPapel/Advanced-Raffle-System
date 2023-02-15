@@ -49,6 +49,7 @@ def main_menu():
         print("Thank you for using this program! I hope you enjoy using it!")
         exit()
 
+# Preview items in the raffle
 def preview_raffleItem():
     print("\nPreviewing Raffle items to win")
     for i in range(len(item)):
@@ -144,13 +145,15 @@ def spin_item():
 
 
 
+# List Variables
+item = ["sample prize"]
+chance = [1]
 
-item = ["stone", "sword"]
-chance = [1, 2]
-
+# Welcome Message
 print("Welcome to the Advanced Raffle System")
 host = input("Please enter the Host's Name: ")
 
+# Calling the main_menu
 main_menu()
             
 
